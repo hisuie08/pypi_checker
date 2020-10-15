@@ -7,14 +7,16 @@ import json
 import os
 import re
 
-PATH = os.path.dirname(os.path.abspath(__file__))
-API_BASE_URL = "https://pypi.python.org/pypi/"
-PACKAGE_LIST_PATH = f"{PATH}/all_packages.json"
-
+TOKEN_PATH = os.path.dirname(os.path.abspath(__file__))+"/token.txt"
+with open(TOKEN_PATH) as r:
+    token = r.read()
 
 bot = commands.Bot(command_prefix="p!")
 
 
 @bot.command()
 async def register(ctx, project_name):
-    pypi.get_package(project_name)
+    pypi.get_package(project_name).register()
+
+
+bot.run(token)
