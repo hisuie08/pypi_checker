@@ -15,8 +15,8 @@ bot = commands.Bot(command_prefix="p!")
 
 
 @bot.command()
-async def register(ctx, project_name):
-    pypi.get_package(project_name).register()
+async def register(ctx, project_name, version="latest"):
+    pypi.get_package(project_name).register(version)
 
 
 bot.run(token)
